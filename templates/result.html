@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction Result</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container result-box">
+
+    <div class="result-icon">
+      {% if result == 'Diabetic' %}
+        <div class="icon-danger">!</div>
+      {% else %}
+        <div class="icon-safe">✓</div>
+      {% endif %}
+    </div>
+
+    <h1>Prediction Result</h1>
+
+    <h2 class="{% if result == 'Diabetic' %}text-danger{% else %}text-safe{% endif %}">
+      {{ result }}
+    </h2>
+
+    <div class="confidence-box">
+      <p>Confidence Level</p>
+      <div class="confidence-bar">
+        <div class="confidence-fill" style="width: {{ confidence }}%"></div>
+      </div>
+      <p class="confidence-num">{{ confidence }}%</p>
+    </div>
+
+    <div class="risk-level">
+      {% if confidence < 40 %}
+        <div class="risk-badge risk-low">🟢 LOW RISK</div>
+        <p class="risk-desc">Low probability — still consult a doctor for confirmation</p>
+      {% elif confidence < 70 %}
+        <div class="risk-badge risk-medium">🟡 MEDIUM RISK</div>
+        <p class="risk-desc">Moderate probability — medical checkup is recommended</p>
+      {% else %}
+        <div class="risk-badge risk-high">🔴 HIGH RISK</div>
+        <p class="risk-desc">High probability — please consult a doctor immediately</p>
+      {% endif %}
+    </div>
+
+    {% if result == 'Diabetic' %}
+    <div class="tips-section danger-tips">
+      <h3>Health Recommendations</h3>
+      <ul>
+        <li><span class="tip-icon">🩺</span><span>Consult a doctor immediately for proper medical diagnosis and treatment.</span></li>
+        <li><span class="tip-icon">🥗</span><span>Avoid sugary foods and drinks. Eat more vegetables, whole grains and lean proteins.</span></li>
+        <li><span class="tip-icon">🚶</span><span>Exercise at least 30 minutes daily — walking, cycling or swimming are great options.</span></li>
+        <li><span class="tip-icon">💧</span><span>Drink at least 8 glasses of water daily to help control blood sugar levels.</span></li>
+        <li><span class="tip-icon">📊</span><span>Monitor your blood glucose regularly and keep a record for your doctor.</span></li>
+        <li><span class="tip-icon">😴</span><span>Get 7-8 hours of sleep every night. Poor sleep worsens blood sugar control.</span></li>
+      </ul>
+    </div>
+    {% else %}
+    <div class="tips-section safe-tips">
+      <h3>Stay Healthy — Prevention Tips</h3>
+      <ul>
+        <li><span class="tip-icon">🥦</span><span>Maintain a balanced diet rich in fruits, vegetables and whole grains.</span></li>
+        <li><span class="tip-icon">🏃</span><span>Exercise regularly — at least 150 minutes of moderate activity per week.</span></li>
+        <li><span class="tip-icon">⚖️</span><span>Maintain a healthy body weight. Even small weight loss reduces diabetes risk significantly.</span></li>
+        <li><span class="tip-icon">🚭</span><span>Avoid smoking and limit alcohol consumption to reduce long term health risks.</span></li>
+        <li><span class="tip-icon">🩺</span><span>Get regular health checkups every 6 months even if you feel healthy.</span></li>
+        <li><span class="tip-icon">😌</span><span>Manage stress through meditation, yoga or deep breathing exercises daily.</span></li>
+      </ul>
+    </div>
+    {% endif %}
+
+    <a href="/" class="btn-back">Try Again</a>
+  </div>
+</body>
+</html>

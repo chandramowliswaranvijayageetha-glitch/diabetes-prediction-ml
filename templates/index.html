@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diabetes Prediction System</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Diabetes Prediction System</h1>
+    <p class="subtitle">Enter your health details below to check your risk</p>
+
+    <div style="background:#f0f4ff;border:2px solid #667eea;border-radius:12px;padding:20px;margin-bottom:24px;">
+      <h3 style="color:#667eea;font-size:16px;margin:0 0 4px;">BMI Calculator</h3>
+      <p style="font-size:12px;color:#888;margin:0 0 14px;">Don't know your BMI? Calculate it here first!</p>
+
+      <div style="display:flex;gap:12px;">
+        <div style="flex:1;">
+          <label style="display:block;font-size:12px;font-weight:600;color:#555;margin-bottom:4px;">Height (cm)</label>
+          <input type="number" id="height" placeholder="e.g. 170" oninput="calculateBMI()"
+          style="width:100%;padding:8px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:14px;box-sizing:border-box;">
+        </div>
+        <div style="flex:1;">
+          <label style="display:block;font-size:12px;font-weight:600;color:#555;margin-bottom:4px;">Weight (kg)</label>
+          <input type="number" id="weight" placeholder="e.g. 70" oninput="calculateBMI()"
+          style="width:100%;padding:8px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:14px;box-sizing:border-box;">
+        </div>
+      </div>
+
+      <div id="bmi-result" style="display:none;margin-top:14px;background:white;border-radius:8px;padding:12px 16px;text-align:center;">
+        <p style="font-size:14px;color:#333;margin:4px 0;">Your BMI: <strong id="bmi-value" style="font-size:22px;color:#667eea;">--</strong></p>
+        <p id="bmi-category" style="font-size:14px;font-weight:600;margin:4px 0;"></p>
+        <button type="button" onclick="useBMI()"
+        style="margin-top:10px;padding:8px 20px;font-size:13px;background:#667eea;color:white;border:none;border-radius:8px;cursor:pointer;width:auto;">
+          Use this BMI in form below
+        </button>
+      </div>
+    </div>
+
+    <form action="/predict" method="POST">
+      <div class="form-group">
+        <label>Pregnancies</label>
+        <input type="number" name="pregnancies" placeholder="e.g. 2" min="0" required>
+      </div>
+      <div class="form-group">
+        <label>Glucose Level</label>
+        <input type="number" name="glucose" placeholder="e.g. 120" min="0" required>
+      </div>
+      <div class="form-group">
+        <label>Blood Pressure</label>
+        <input type="number" name="bloodpressure" placeholder="e.g. 70" min="0" required>
+      </div>
+      <div class="form-group">
+        <label>Skin Thickness</label>
+        <input type="number" name="skinthickness" placeholder="e.g. 20" min="0" required>
+      </div>
+      <div class="form-group">
+        <label>Insulin</label>
+        <input type="number" name="insulin" placeholder="e.g. 80" min="0" required>
+      </div>
+      <div class="form-group">
+        <label>BMI <span style="font-size:11px;color:#667eea;">(or use calculator above)</span></label>
+        <input type="number" step="0.1" name="bmi" id="bmi-input" placeholder="e.g. 25.5" min="0" required>
+      </div>
+      <div class="form-group">
+        <label>Diabetes Pedigree Function</label>
+        <input type="number" step="0.001" name="dpf" placeholder="e.g. 0.500" min="0" required>
+      </div>
+      <div class="form-group">
+        <label>Age</label>
+        <input type="number" name="age" placeholder="e.g. 30" min="0" required>
+      </div>
+      <button type="submit">Predict Now</button>
+    </form>
+  </div>
+
+  <script>
+    function calculateBMI() {
+      var height = parseFloat(document.getElementById('height').value);
+      var weight = parseFloat(document.getElementById('weight').value);
+      if (height > 0 && weight > 0) {
+        var bmi = weight / ((height/100) * (height/100));
+        var bmiRounded = Math.round(bmi * 10) / 10;
+        document.getElementById('bmi-value').textContent = bmiRounded;
+        document.getElementById('bmi-result').style.display = 'block';
+        var category = '';
+        var color = '';
+        if (bmi < 18.5) { category = 'Underweight'; color = '#3498db'; }
+        else if (bmi < 25) { category = 'Normal weight'; color = '#27ae60'; }
+        else if (bmi < 30) { category = 'Overweight'; color = '#f39c12'; }
+        else { category = 'Obese'; color = '#e74c3c'; }
+        var catEl = document.getElementById('bmi-category');
+        catEl.textContent = category;
+        catEl.style.color = color;
+      } else {
+        document.getElementById('bmi-result').style.display = 'none';
+      }
+    }
+
+    function useBMI() {
+      var bmiValue = document.getElementById('bmi-value').textContent;
+      document.getElementById('bmi-input').value = bmiValue;
+      alert('BMI ' + bmiValue + ' has been added to the form!');
+    }
+  </script>
+</body>
+</html>
