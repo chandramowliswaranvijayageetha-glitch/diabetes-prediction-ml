@@ -1,4 +1,4 @@
-﻿# 🏥 Diabetes Prediction System
+# 🏥 Diabetes Prediction System
 
 A Machine Learning web application that predicts diabetes risk using health parameters.
 
@@ -8,11 +8,21 @@ A Machine Learning web application that predicts diabetes risk using health para
 
 ---
 
-## 🚀 Features
-- ✅ Predicts Diabetic / Not Diabetic with confidence percentage
-- ✅ Built-in BMI Calculator with auto-fill
+## 🚀 Features (15 Total)
+- ✅ Disease prediction — Diabetic / Not Diabetic with confidence %
+- ✅ BMI Calculator with auto-fill
+- ✅ Blood Sugar Level Interpreter
+- ✅ Symptom Checker with 10 symptoms
+- ✅ Gender selection — auto hides Pregnancies for Male
+- ✅ Patient Name input in form
 - ✅ Risk Level indicator — 🟢 Low / 🟡 Medium / 🔴 High
-- ✅ Personalized health recommendations
+- ✅ Personalized Health Tips
+- ✅ Personalized Diet Chart — Foods to eat and avoid
+- ✅ Daily Meal Plan — 6 meals per day
+- ✅ Personalized Exercise Plan
+- ✅ PDF Report download with patient name
+- ✅ Health Progress Tracker — stores up to 20 predictions
+- ✅ Nearby Hospital Finder — 9 Indian cities
 - ✅ Comparison of 3 ML models
 
 ---
@@ -35,23 +45,21 @@ A Machine Learning web application that predicts diabetes risk using health para
 | Flask | Web framework |
 | Scikit-learn | ML models |
 | Pandas and NumPy | Data processing |
+| ReportLab | PDF generation |
 | HTML + CSS | Frontend UI |
-| Joblib | Model saving |
 
 ---
 
 ## 📊 Dataset
-- **Name:** Pima Indians Diabetes Database
-- **Source:** UCI Machine Learning Repository (Kaggle)
-- **Records:** 768 rows
-- **Features:** 8 health parameters
-- **Output:** Diabetic (1) / Not Diabetic (0)
+- Name: Pima Indians Diabetes Database
+- Source: UCI Machine Learning Repository (Kaggle)
+- Records: 768 rows
+- Features: 8 health parameters
 
 ---
 
 ## ▶️ How to Run
-
-1. Clone the repository
+1. Clone the repo
 2. Install requirements: `pip install -r requirements.txt`
 3. Train the model: `cd model && python train_model.py`
 4. Run the app: `python app.py`
@@ -60,6 +68,6 @@ A Machine Learning web application that predicts diabetes risk using health para
 ---
 
 ## 👨‍💻 Developer
-- **Name:** Chandra Mowliswaran P
-- **Course:** Machine Learning with Python
-- **Type:** Internship Project 2026
+- Name: Chandra Mowliswaran P
+- Course: Machine Learning with Python
+- Type: Internship Project 2026
