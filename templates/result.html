@@ -18,6 +18,7 @@
     </div>
 
     <h1>Prediction Result</h1>
+    <p class="patient-name">👤 {{ patient_name }}</p>
 
     <h2 class="{% if result == 'Diabetic' %}text-danger{% else %}text-safe{% endif %}">
       {{ result }}
@@ -70,7 +71,455 @@
     </div>
     {% endif %}
 
+    <!-- DIET CHART -->
+    <div style="text-align:left;margin:20px 0;background:#f8f9ff;border-radius:12px;padding:20px;">
+      <h3 style="font-size:18px;color:#062B5E;font-weight:700;margin-bottom:6px;text-align:center;">🍽️ Personalized Diet Chart</h3>
+
+      {% if result == 'Diabetic' %}
+      <p style="font-size:13px;color:#888;text-align:center;margin-bottom:16px;">Follow this diet plan to manage your diabetes effectively</p>
+      <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:200px;background:#f0fff4;border:1.5px solid #27ae60;border-radius:10px;padding:14px;">
+          <h4 style="font-size:13px;font-weight:700;color:#27ae60;margin-bottom:10px;">✅ Foods to Eat</h4>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🥦 Green vegetables — spinach, broccoli, beans</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🍎 Low sugar fruits — apple, guava, papaya</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🌾 Whole grains — brown rice, oats, ragi</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🐟 Lean proteins — fish, chicken, eggs</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🥛 Low fat dairy — buttermilk, curd</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🥜 Nuts — almonds, walnuts (small portions)</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;">💧 Water — minimum 8 glasses daily</li>
+          </ul>
+        </div>
+        <div style="flex:1;min-width:200px;background:#fff5f5;border:1.5px solid #e74c3c;border-radius:10px;padding:14px;">
+          <h4 style="font-size:13px;font-weight:700;color:#e74c3c;margin-bottom:10px;">❌ Foods to Avoid</h4>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🍬 Sugar and sweets — candy, chocolates</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🥤 Sugary drinks — cola, juice, energy drinks</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🍞 White bread, white rice, maida</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🍟 Fried foods — chips, samosa, fries</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🍰 Bakery items — cake, biscuits, pastry</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🧂 High salt foods — pickles, papads</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;">🍺 Alcohol and smoking</li>
+          </ul>
+        </div>
+      </div>
+
+      {% else %}
+      <p style="font-size:13px;color:#888;text-align:center;margin-bottom:16px;">Follow this diet plan to stay healthy and prevent diabetes</p>
+      <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:200px;background:#f0fff4;border:1.5px solid #27ae60;border-radius:10px;padding:14px;">
+          <h4 style="font-size:13px;font-weight:700;color:#27ae60;margin-bottom:10px;">✅ Healthy Foods to Include</h4>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🥗 Fresh salads and green vegetables daily</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🍎 All fresh fruits — berries, citrus, mango</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🌾 Whole grains — wheat, oats, millets</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🐟 Proteins — fish, chicken, pulses, eggs</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🥛 Dairy — milk, curd, paneer in moderation</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🥜 Healthy fats — nuts, seeds, olive oil</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;">💧 Water — minimum 8 glasses daily</li>
+          </ul>
+        </div>
+        <div style="flex:1;min-width:200px;background:#fff5f5;border:1.5px solid #e74c3c;border-radius:10px;padding:14px;">
+          <h4 style="font-size:13px;font-weight:700;color:#e74c3c;margin-bottom:10px;">⚠️ Foods to Limit</h4>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🍬 Excess sugar and sweets</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🥤 Packaged and processed drinks</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🍟 Deep fried and junk foods</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🍰 Excess bakery and refined foods</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🧂 Very salty and spicy foods</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">🍺 Alcohol in excess</li>
+            <li style="font-size:12px;color:#444;padding:5px 0;">🚬 Smoking — avoid completely</li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+      <div style="background:white;border-radius:10px;padding:14px;border:1px solid #e0e0e0;">
+        <h4 style="font-size:14px;font-weight:700;color:#062B5E;margin-bottom:12px;text-align:center;">📅 Daily Meal Plan</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          {% if result == 'Diabetic' %}
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 12px;border-left:3px solid #667eea;">
+            <div style="font-size:12px;font-weight:700;color:#667eea;margin-bottom:4px;">🌅 Breakfast</div>
+            <div style="font-size:11px;color:#555;">Oats porridge + 2 boiled eggs + green tea</div>
+          </div>
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 12px;border-left:3px solid #667eea;">
+            <div style="font-size:12px;font-weight:700;color:#667eea;margin-bottom:4px;">☀️ Mid Morning</div>
+            <div style="font-size:11px;color:#555;">1 apple or guava + handful of almonds</div>
+          </div>
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 12px;border-left:3px solid #667eea;">
+            <div style="font-size:12px;font-weight:700;color:#667eea;margin-bottom:4px;">🌞 Lunch</div>
+            <div style="font-size:11px;color:#555;">Brown rice + dal + sabzi + curd + salad</div>
+          </div>
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 12px;border-left:3px solid #667eea;">
+            <div style="font-size:12px;font-weight:700;color:#667eea;margin-bottom:4px;">🌆 Evening</div>
+            <div style="font-size:11px;color:#555;">Roasted chana + buttermilk or green tea</div>
+          </div>
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 12px;border-left:3px solid #667eea;">
+            <div style="font-size:12px;font-weight:700;color:#667eea;margin-bottom:4px;">🌙 Dinner</div>
+            <div style="font-size:11px;color:#555;">2 roti + dal + vegetables + salad</div>
+          </div>
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 12px;border-left:3px solid #667eea;">
+            <div style="font-size:12px;font-weight:700;color:#667eea;margin-bottom:4px;">🌛 Bedtime</div>
+            <div style="font-size:11px;color:#555;">1 glass warm low fat milk</div>
+          </div>
+          {% else %}
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 12px;border-left:3px solid #27ae60;">
+            <div style="font-size:12px;font-weight:700;color:#27ae60;margin-bottom:4px;">🌅 Breakfast</div>
+            <div style="font-size:11px;color:#555;">Idli or dosa + sambar + fruit + milk</div>
+          </div>
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 12px;border-left:3px solid #27ae60;">
+            <div style="font-size:12px;font-weight:700;color:#27ae60;margin-bottom:4px;">☀️ Mid Morning</div>
+            <div style="font-size:11px;color:#555;">Seasonal fruit + coconut water</div>
+          </div>
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 12px;border-left:3px solid #27ae60;">
+            <div style="font-size:12px;font-weight:700;color:#27ae60;margin-bottom:4px;">🌞 Lunch</div>
+            <div style="font-size:11px;color:#555;">Rice + dal + sabzi + curd + salad</div>
+          </div>
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 12px;border-left:3px solid #27ae60;">
+            <div style="font-size:12px;font-weight:700;color:#27ae60;margin-bottom:4px;">🌆 Evening</div>
+            <div style="font-size:11px;color:#555;">Sprouts chaat or fruit bowl + tea</div>
+          </div>
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 12px;border-left:3px solid #27ae60;">
+            <div style="font-size:12px;font-weight:700;color:#27ae60;margin-bottom:4px;">🌙 Dinner</div>
+            <div style="font-size:11px;color:#555;">Roti + dal + vegetables + salad</div>
+          </div>
+          <div style="background:#f8f9ff;border-radius:8px;padding:10px 12px;border-left:3px solid #27ae60;">
+            <div style="font-size:12px;font-weight:700;color:#27ae60;margin-bottom:4px;">🌛 Bedtime</div>
+            <div style="font-size:11px;color:#555;">1 glass warm milk with turmeric</div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- EXERCISE PLAN -->
+    <div style="text-align:left;margin:20px 0;background:#f0f9ff;border-radius:12px;padding:20px;">
+      <h3 style="font-size:18px;color:#062B5E;font-weight:700;margin-bottom:6px;text-align:center;">🏃 Personalized Exercise Plan</h3>
+
+      {% if result == 'Diabetic' %}
+      <p style="font-size:13px;color:#888;text-align:center;margin-bottom:16px;">Follow this exercise plan to help manage and control your diabetes</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+        <div style="background:white;border-radius:10px;padding:14px;border-left:4px solid #4F46E5;">
+          <div style="font-size:13px;font-weight:700;color:#4F46E5;margin-bottom:8px;">🌅 Morning Routine</div>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">🚶 Brisk walking — 30 minutes</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">🧘 Yoga stretches — 10 minutes</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;">🌬️ Deep breathing — 5 minutes</li>
+          </ul>
+        </div>
+        <div style="background:white;border-radius:10px;padding:14px;border-left:4px solid #10B981;">
+          <div style="font-size:13px;font-weight:700;color:#10B981;margin-bottom:8px;">🌆 Evening Routine</div>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">🚴 Cycling or swimming — 20 minutes</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">💪 Light strength training — 15 minutes</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;">🧘 Meditation — 10 minutes</li>
+          </ul>
+        </div>
+        <div style="background:white;border-radius:10px;padding:14px;border-left:4px solid #F59E0B;">
+          <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:8px;">📅 Weekly Plan</div>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">Mon/Wed/Fri — Cardio exercises</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">Tue/Thu — Yoga and stretching</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;">Sat/Sun — Light walking and rest</li>
+          </ul>
+        </div>
+        <div style="background:white;border-radius:10px;padding:14px;border-left:4px solid #EF4444;">
+          <div style="font-size:13px;font-weight:700;color:#EF4444;margin-bottom:8px;">⚠️ Important Rules</div>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">✅ Check blood sugar before exercise</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">✅ Carry glucose tablets always</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;">✅ Stop if you feel dizzy or weak</li>
+          </ul>
+        </div>
+      </div>
+      <div style="background:white;border-radius:10px;padding:14px;border:1px solid #e0e0e0;">
+        <h4 style="font-size:14px;font-weight:700;color:#062B5E;margin-bottom:12px;text-align:center;">📊 Exercise Benefits for Diabetics</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div style="background:#f0f4ff;border-radius:8px;padding:10px;text-align:center;">
+            <div style="font-size:20px;margin-bottom:4px;">📉</div>
+            <div style="font-size:12px;font-weight:700;color:#4F46E5;">Lowers Blood Sugar</div>
+            <div style="font-size:11px;color:#888;margin-top:2px;">Exercise burns glucose</div>
+          </div>
+          <div style="background:#f0fff4;border-radius:8px;padding:10px;text-align:center;">
+            <div style="font-size:20px;margin-bottom:4px;">❤️</div>
+            <div style="font-size:12px;font-weight:700;color:#10B981;">Heart Health</div>
+            <div style="font-size:11px;color:#888;margin-top:2px;">Reduces heart disease risk</div>
+          </div>
+          <div style="background:#fff8f0;border-radius:8px;padding:10px;text-align:center;">
+            <div style="font-size:20px;margin-bottom:4px;">⚖️</div>
+            <div style="font-size:12px;font-weight:700;color:#F59E0B;">Weight Control</div>
+            <div style="font-size:11px;color:#888;margin-top:2px;">Helps maintain healthy BMI</div>
+          </div>
+        </div>
+      </div>
+
+      {% else %}
+      <p style="font-size:13px;color:#888;text-align:center;margin-bottom:16px;">Follow this exercise plan to stay fit and prevent diabetes</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+        <div style="background:white;border-radius:10px;padding:14px;border-left:4px solid #4F46E5;">
+          <div style="font-size:13px;font-weight:700;color:#4F46E5;margin-bottom:8px;">🌅 Morning Routine</div>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">🏃 Jogging or running — 30 minutes</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">🧘 Yoga or stretching — 15 minutes</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;">🌬️ Deep breathing — 5 minutes</li>
+          </ul>
+        </div>
+        <div style="background:white;border-radius:10px;padding:14px;border-left:4px solid #10B981;">
+          <div style="font-size:13px;font-weight:700;color:#10B981;margin-bottom:8px;">🌆 Evening Routine</div>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">🚴 Cycling or sports — 30 minutes</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">💪 Strength training — 20 minutes</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;">🧘 Relaxation — 10 minutes</li>
+          </ul>
+        </div>
+        <div style="background:white;border-radius:10px;padding:14px;border-left:4px solid #F59E0B;">
+          <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:8px;">📅 Weekly Plan</div>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">Mon/Wed/Fri — High intensity cardio</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">Tue/Thu — Strength and flexibility</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;">Sat/Sun — Sports or outdoor activity</li>
+          </ul>
+        </div>
+        <div style="background:white;border-radius:10px;padding:14px;border-left:4px solid #10B981;">
+          <div style="font-size:13px;font-weight:700;color:#10B981;margin-bottom:8px;">✅ Healthy Tips</div>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">✅ Stay consistent every day</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;border-bottom:0.5px solid #f0f0f0;">✅ Drink water before and after</li>
+            <li style="font-size:12px;color:#444;padding:4px 0;">✅ Warm up before every session</li>
+          </ul>
+        </div>
+      </div>
+      <div style="background:white;border-radius:10px;padding:14px;border:1px solid #e0e0e0;">
+        <h4 style="font-size:14px;font-weight:700;color:#062B5E;margin-bottom:12px;text-align:center;">📊 Exercise Benefits</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div style="background:#f0f4ff;border-radius:8px;padding:10px;text-align:center;">
+            <div style="font-size:20px;margin-bottom:4px;">🛡️</div>
+            <div style="font-size:12px;font-weight:700;color:#4F46E5;">Prevents Diabetes</div>
+            <div style="font-size:11px;color:#888;margin-top:2px;">Reduces risk by 58%</div>
+          </div>
+          <div style="background:#f0fff4;border-radius:8px;padding:10px;text-align:center;">
+            <div style="font-size:20px;margin-bottom:4px;">❤️</div>
+            <div style="font-size:12px;font-weight:700;color:#10B981;">Heart Health</div>
+            <div style="font-size:11px;color:#888;margin-top:2px;">Stronger cardiovascular system</div>
+          </div>
+          <div style="background:#fff8f0;border-radius:8px;padding:10px;text-align:center;">
+            <div style="font-size:20px;margin-bottom:4px;">😊</div>
+            <div style="font-size:12px;font-weight:700;color:#F59E0B;">Mental Health</div>
+            <div style="font-size:11px;color:#888;margin-top:2px;">Reduces stress and anxiety</div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- DOWNLOAD FORM -->
+    <form action="/download_report" method="POST" style="margin-bottom:12px;">
+      <input type="hidden" name="patient_name" value="{{ patient_name }}">
+      <input type="hidden" name="result" value="{{ result }}">
+      <input type="hidden" name="confidence" value="{{ confidence }}">
+      {% for f in features %}
+      <input type="hidden" name="features" value="{{ f }}">
+      {% endfor %}
+      <button type="submit" class="btn-download">📄 Download PDF Report</button>
+    </form>
+
     <a href="/" class="btn-back">Try Again</a>
+   <!-- NEARBY HOSPITAL FINDER -->
+<div style="text-align:left;margin:20px 0;background:#fff5f5;border-radius:12px;padding:20px;border:2px solid #e74c3c;">
+  <h3 style="font-size:18px;color:#e74c3c;font-weight:700;margin-bottom:6px;text-align:center;">🏥 Nearby Hospital Finder</h3>
+  <p style="font-size:13px;color:#888;text-align:center;margin-bottom:16px;">Find hospitals and clinics near you for immediate consultation</p>
+
+  <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+    <div style="flex:2;min-width:180px;">
+      <label style="display:block;font-size:12px;font-weight:600;color:#555;margin-bottom:4px;">Enter Your City</label>
+      <input type="text" id="city-input" placeholder="e.g. Chennai, Mumbai, Delhi"
+      style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:14px;box-sizing:border-box;">
+    </div>
+    <div style="flex:1;min-width:120px;">
+      <label style="display:block;font-size:12px;font-weight:600;color:#555;margin-bottom:4px;">Hospital Type</label>
+      <select id="hospital-type"
+      style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:14px;box-sizing:border-box;background:white;">
+        <option value="all">All Types</option>
+        <option value="government">Government</option>
+        <option value="private">Private</option>
+        <option value="clinic">Clinic</option>
+      </select>
+    </div>
+    <div style="flex:1;min-width:120px;display:flex;align-items:flex-end;">
+      <button onclick="findHospitals()"
+      style="width:100%;padding:10px 14px;background:linear-gradient(135deg,#e74c3c,#c0392b);color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;">
+        🔍 Find Now
+      </button>
+    </div>
+  </div>
+
+  <div id="hospital-results" style="display:none;">
+    <div id="hospital-list"></div>
+    <div style="background:#fff8f8;border-radius:8px;padding:12px;margin-top:12px;border:1px solid #fcc;">
+      <p style="font-size:12px;color:#e74c3c;margin:0;text-align:center;">
+        ⚠️ Please call the hospital before visiting to confirm availability and timings.
+      </p>
+    </div>
+  </div>
+
+  <div id="hospital-loading" style="display:none;text-align:center;padding:20px;">
+    <p style="color:#e74c3c;font-size:14px;">🔍 Searching for hospitals...</p>
+  </div>
+</div> 
+<a href="/tracker" style="display:block;text-align:center;margin-top:10px;padding:12px;background:#f0f4ff;color:#667eea;border:1.5px solid #667eea;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">📈 View Health Progress Tracker</a>
   </div>
 </body>
+<script>
+var hospitalDatabase = {
+  'chennai': [
+    { name: 'Apollo Hospitals', type: 'private', area: 'Greams Road', phone: '044-28293333', timing: '24/7', specialist: 'Diabetology, Endocrinology' },
+    { name: 'Fortis Malar Hospital', type: 'private', area: 'Adyar', phone: '044-42893333', timing: '24/7', specialist: 'Diabetes & Endocrinology' },
+    { name: 'Government General Hospital', type: 'government', area: 'Park Town', phone: '044-25305000', timing: '24/7', specialist: 'General Medicine, Diabetes' },
+    { name: 'MIOT International', type: 'private', area: 'Manapakkam', phone: '044-22490000', timing: '24/7', specialist: 'Endocrinology, Internal Medicine' },
+    { name: 'Dr. Mohan Diabetes Centre', type: 'clinic', area: 'Gopalapuram', phone: '044-28110180', timing: '9AM-6PM', specialist: 'Diabetes Specialist' },
+    { name: 'Sri Ramachandra Hospital', type: 'private', area: 'Porur', phone: '044-45928888', timing: '24/7', specialist: 'Endocrinology, Diabetes' },
+  ],
+  'mumbai': [
+    { name: 'Kokilaben Dhirubhai Ambani Hospital', type: 'private', area: 'Andheri West', phone: '022-30999999', timing: '24/7', specialist: 'Endocrinology, Diabetes' },
+    { name: 'Lilavati Hospital', type: 'private', area: 'Bandra', phone: '022-26751000', timing: '24/7', specialist: 'Diabetes & Metabolism' },
+    { name: 'KEM Hospital', type: 'government', area: 'Parel', phone: '022-24136000', timing: '24/7', specialist: 'General Medicine, Diabetes' },
+    { name: 'Breach Candy Hospital', type: 'private', area: 'Breach Candy', phone: '022-23667888', timing: '24/7', specialist: 'Endocrinology' },
+    { name: 'Bombay Hospital', type: 'private', area: 'Marine Lines', phone: '022-22067676', timing: '24/7', specialist: 'Diabetes Care' },
+    { name: 'Hinduja Hospital', type: 'private', area: 'Mahim', phone: '022-24452222', timing: '24/7', specialist: 'Endocrinology, Internal Medicine' },
+  ],
+  'delhi': [
+    { name: 'AIIMS Delhi', type: 'government', area: 'Ansari Nagar', phone: '011-26588500', timing: '24/7', specialist: 'Endocrinology, Diabetes' },
+    { name: 'Apollo Hospital Delhi', type: 'private', area: 'Sarita Vihar', phone: '011-29871000', timing: '24/7', specialist: 'Diabetes & Endocrinology' },
+    { name: 'Max Super Speciality Hospital', type: 'private', area: 'Saket', phone: '011-26515050', timing: '24/7', specialist: 'Endocrinology' },
+    { name: 'Safdarjung Hospital', type: 'government', area: 'Safdarjung', phone: '011-26165060', timing: '24/7', specialist: 'General Medicine, Diabetes' },
+    { name: 'Fortis Hospital', type: 'private', area: 'Vasant Kunj', phone: '011-42776222', timing: '24/7', specialist: 'Diabetes Care' },
+    { name: 'Sir Ganga Ram Hospital', type: 'private', area: 'Rajinder Nagar', phone: '011-25750000', timing: '24/7', specialist: 'Endocrinology, Diabetes' },
+  ],
+  'bangalore': [
+    { name: 'Manipal Hospital', type: 'private', area: 'Old Airport Road', phone: '080-25024444', timing: '24/7', specialist: 'Endocrinology, Diabetes' },
+    { name: 'Apollo Hospital Bangalore', type: 'private', area: 'Bannerghatta Road', phone: '080-26304050', timing: '24/7', specialist: 'Diabetes & Metabolism' },
+    { name: 'Bowring and Lady Curzon Hospital', type: 'government', area: 'Shivajinagar', phone: '080-25561042', timing: '24/7', specialist: 'General Medicine' },
+    { name: 'Fortis Hospital Bangalore', type: 'private', area: 'Cunningham Road', phone: '080-66214444', timing: '24/7', specialist: 'Endocrinology' },
+    { name: 'NIMHANS', type: 'government', area: 'Hosur Road', phone: '080-46110007', timing: '9AM-5PM', specialist: 'Neurology, Internal Medicine' },
+    { name: 'Sakra World Hospital', type: 'private', area: 'Marathahalli', phone: '080-49690000', timing: '24/7', specialist: 'Diabetes & Endocrinology' },
+  ],
+  'hyderabad': [
+    { name: 'Apollo Hospital Hyderabad', type: 'private', area: 'Jubilee Hills', phone: '040-23607777', timing: '24/7', specialist: 'Diabetes & Endocrinology' },
+    { name: 'NIMS Hospital', type: 'government', area: 'Punjagutta', phone: '040-23489000', timing: '24/7', specialist: 'Endocrinology, Diabetes' },
+    { name: 'Yashoda Hospital', type: 'private', area: 'Somajiguda', phone: '040-45674567', timing: '24/7', specialist: 'Diabetes Care' },
+    { name: 'Care Hospital', type: 'private', area: 'Nampally', phone: '040-30418888', timing: '24/7', specialist: 'Endocrinology' },
+    { name: 'Osmania General Hospital', type: 'government', area: 'Afzalgunj', phone: '040-24600113', timing: '24/7', specialist: 'General Medicine' },
+    { name: 'Gandhi Hospital', type: 'government', area: 'Musheerabad', phone: '040-27505566', timing: '24/7', specialist: 'General Medicine, Diabetes' },
+  ],
+  'kolkata': [
+    { name: 'Apollo Gleneagles Hospital', type: 'private', area: 'Canal Circular Road', phone: '033-23201000', timing: '24/7', specialist: 'Endocrinology, Diabetes' },
+    { name: 'SSKM Hospital', type: 'government', area: 'AJC Bose Road', phone: '033-22041739', timing: '24/7', specialist: 'General Medicine, Diabetes' },
+    { name: 'Fortis Hospital Kolkata', type: 'private', area: 'Anandapur', phone: '033-66284444', timing: '24/7', specialist: 'Diabetes & Metabolism' },
+    { name: 'AMRI Hospital', type: 'private', area: 'Dhakuria', phone: '033-40001000', timing: '24/7', specialist: 'Endocrinology' },
+    { name: 'RN Tagore Hospital', type: 'private', area: 'Mukundapur', phone: '033-66000000', timing: '24/7', specialist: 'Diabetes Care' },
+    { name: 'NRS Medical College', type: 'government', area: 'Sealdah', phone: '033-22143400', timing: '24/7', specialist: 'General Medicine' },
+  ],
+  'pune': [
+    { name: 'Ruby Hall Clinic', type: 'private', area: 'Sassoon Road', phone: '020-26163391', timing: '24/7', specialist: 'Endocrinology, Diabetes' },
+    { name: 'Sassoon General Hospital', type: 'government', area: 'Pune Station', phone: '020-26128000', timing: '24/7', specialist: 'General Medicine' },
+    { name: 'Jehangir Hospital', type: 'private', area: 'Sassoon Road', phone: '020-66819999', timing: '24/7', specialist: 'Diabetes & Metabolism' },
+    { name: 'KEM Hospital Pune', type: 'government', area: 'Sardar Moodliar Road', phone: '020-26125600', timing: '24/7', specialist: 'General Medicine, Diabetes' },
+    { name: 'Deenanath Mangeshkar Hospital', type: 'private', area: 'Erandwane', phone: '020-49150000', timing: '24/7', specialist: 'Endocrinology' },
+    { name: 'Aditya Birla Memorial Hospital', type: 'private', area: 'Chinchwad', phone: '020-30715000', timing: '24/7', specialist: 'Diabetes Care' },
+  ],
+  'coimbatore': [
+    { name: 'PSG Hospitals', type: 'private', area: 'Peelamedu', phone: '0422-4345000', timing: '24/7', specialist: 'Endocrinology, Diabetes' },
+    { name: 'Kovai Medical Centre', type: 'private', area: 'Avanashi Road', phone: '0422-4323800', timing: '24/7', specialist: 'Diabetes & Metabolism' },
+    { name: 'Government Medical College', type: 'government', area: 'Coimbatore', phone: '0422-2301393', timing: '24/7', specialist: 'General Medicine' },
+    { name: 'Sri Ramakrishna Hospital', type: 'private', area: 'Sidhapudur', phone: '0422-4353800', timing: '24/7', specialist: 'Endocrinology' },
+    { name: 'Royal Care Hospital', type: 'private', area: 'NSR Road', phone: '0422-2222000', timing: '24/7', specialist: 'Diabetes Care' },
+    { name: 'Diabetes Speciality Centre', type: 'clinic', area: 'RS Puram', phone: '0422-2541234', timing: '9AM-7PM', specialist: 'Diabetes Specialist' },
+  ],
+  'madurai': [
+    { name: 'Government Rajaji Hospital', type: 'government', area: 'Panagal Road', phone: '0452-2532535', timing: '24/7', specialist: 'General Medicine, Diabetes' },
+    { name: 'Apollo Speciality Hospital', type: 'private', area: 'Lake Area', phone: '0452-2580000', timing: '24/7', specialist: 'Endocrinology, Diabetes' },
+    { name: 'Meenakshi Mission Hospital', type: 'private', area: 'Lake Area', phone: '0452-2588000', timing: '24/7', specialist: 'Diabetes & Metabolism' },
+    { name: 'Velammal Medical College', type: 'private', area: 'Anuppanadi', phone: '0452-2580100', timing: '24/7', specialist: 'Endocrinology' },
+    { name: 'Devaki Hospital', type: 'private', area: 'SS Colony', phone: '0452-2661234', timing: '24/7', specialist: 'Diabetes Care' },
+    { name: 'Aruna Hospital', type: 'clinic', area: 'KK Nagar', phone: '0452-2371234', timing: '9AM-6PM', specialist: 'Diabetes Specialist' },
+  ],
+};
+
+function findHospitals() {
+  var city = document.getElementById('city-input').value.trim().toLowerCase();
+  var type = document.getElementById('hospital-type').value;
+  var resultsDiv = document.getElementById('hospital-results');
+  var listDiv = document.getElementById('hospital-list');
+  var loadingDiv = document.getElementById('hospital-loading');
+
+  if (!city) {
+    alert('Please enter your city name!');
+    return;
+  }
+
+  loadingDiv.style.display = 'block';
+  resultsDiv.style.display = 'none';
+
+  setTimeout(function() {
+    loadingDiv.style.display = 'none';
+
+    var hospitals = hospitalDatabase[city];
+
+    if (!hospitals) {
+      listDiv.innerHTML = '<div style="text-align:center;padding:20px;background:#fff8f8;border-radius:8px;border:1px solid #fcc;">' +
+        '<p style="color:#e74c3c;font-size:14px;font-weight:600;">No hospitals found for "' + city + '"</p>' +
+        '<p style="color:#888;font-size:12px;margin-top:6px;">Try: Chennai, Mumbai, Delhi, Bangalore, Hyderabad, Kolkata, Pune, Coimbatore, Madurai</p>' +
+        '</div>';
+      resultsDiv.style.display = 'block';
+      return;
+    }
+
+    if (type !== 'all') {
+      hospitals = hospitals.filter(function(h) { return h.type === type; });
+    }
+
+    if (hospitals.length === 0) {
+      listDiv.innerHTML = '<div style="text-align:center;padding:20px;">' +
+        '<p style="color:#888;font-size:14px;">No ' + type + ' hospitals found. Try "All Types".</p></div>';
+      resultsDiv.style.display = 'block';
+      return;
+    }
+
+    var html = '<p style="font-size:13px;color:#555;margin-bottom:10px;font-weight:600;">Found ' + hospitals.length + ' hospitals in ' + city.charAt(0).toUpperCase() + city.slice(1) + ':</p>';
+
+    hospitals.forEach(function(h, i) {
+      var typeColor = h.type === 'government' ? '#27ae60' : h.type === 'clinic' ? '#667eea' : '#e74c3c';
+      var typeBg = h.type === 'government' ? '#f0fff4' : h.type === 'clinic' ? '#f0f4ff' : '#fff5f5';
+      var typeLabel = h.type.charAt(0).toUpperCase() + h.type.slice(1);
+
+      html += '<div style="background:white;border-radius:10px;padding:14px;margin-bottom:10px;border:0.5px solid #e0e0e0;border-left:4px solid ' + typeColor + ';">' +
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">' +
+        '<div>' +
+        '<p style="font-size:14px;font-weight:700;color:#062B5E;margin:0 0 4px;">' + (i+1) + '. ' + h.name + '</p>' +
+        '<p style="font-size:12px;color:#888;margin:0;">📍 ' + h.area + '</p>' +
+        '</div>' +
+        '<span style="background:' + typeBg + ';color:' + typeColor + ';padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">' + typeLabel + '</span>' +
+        '</div>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px;">' +
+        '<div style="background:#f8f9ff;border-radius:6px;padding:8px;">' +
+        '<p style="font-size:10px;color:#888;margin:0 0 2px;">📞 Phone</p>' +
+        '<p style="font-size:12px;color:#333;font-weight:600;margin:0;">' + h.phone + '</p>' +
+        '</div>' +
+        '<div style="background:#f8f9ff;border-radius:6px;padding:8px;">' +
+        '<p style="font-size:10px;color:#888;margin:0 0 2px;">⏰ Timing</p>' +
+        '<p style="font-size:12px;color:#333;font-weight:600;margin:0;">' + h.timing + '</p>' +
+        '</div>' +
+        '</div>' +
+        '<div style="background:#f0f4ff;border-radius:6px;padding:8px;margin-top:6px;">' +
+        '<p style="font-size:10px;color:#888;margin:0 0 2px;">🩺 Specialization</p>' +
+        '<p style="font-size:12px;color:#667eea;font-weight:600;margin:0;">' + h.specialist + '</p>' +
+        '</div>' +
+        '</div>';
+    });
+
+    listDiv.innerHTML = html;
+    resultsDiv.style.display = 'block';
+  }, 1000);
+}
+</script>
 </html>

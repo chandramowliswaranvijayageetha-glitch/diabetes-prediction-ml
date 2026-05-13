@@ -11,10 +11,10 @@
     <h1>Diabetes Prediction System</h1>
     <p class="subtitle">Enter your health details below to check your risk</p>
 
+    <!-- BMI CALCULATOR -->
     <div style="background:#f0f4ff;border:2px solid #667eea;border-radius:12px;padding:20px;margin-bottom:24px;">
       <h3 style="color:#667eea;font-size:16px;margin:0 0 4px;">BMI Calculator</h3>
       <p style="font-size:12px;color:#888;margin:0 0 14px;">Don't know your BMI? Calculate it here first!</p>
-
       <div style="display:flex;gap:12px;">
         <div style="flex:1;">
           <label style="display:block;font-size:12px;font-weight:600;color:#555;margin-bottom:4px;">Height (cm)</label>
@@ -27,7 +27,6 @@
           style="width:100%;padding:8px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:14px;box-sizing:border-box;">
         </div>
       </div>
-
       <div id="bmi-result" style="display:none;margin-top:14px;background:white;border-radius:8px;padding:12px 16px;text-align:center;">
         <p style="font-size:14px;color:#333;margin:4px 0;">Your BMI: <strong id="bmi-value" style="font-size:22px;color:#667eea;">--</strong></p>
         <p id="bmi-category" style="font-size:14px;font-weight:600;margin:4px 0;"></p>
@@ -38,10 +37,120 @@
       </div>
     </div>
 
+    <!-- BLOOD SUGAR INTERPRETER -->
+    <div style="background:#f0fff4;border:2px solid #10B981;border-radius:12px;padding:20px;margin-bottom:24px;">
+      <h3 style="color:#10B981;font-size:16px;margin:0 0 4px;font-weight:700;">🩸 Blood Sugar Level Interpreter</h3>
+      <p style="font-size:12px;color:#888;margin:0 0 14px;">Enter your blood sugar reading to know what it means</p>
+      <div style="display:flex;gap:12px;align-items:flex-end;margin-bottom:14px;">
+        <div style="flex:1;">
+          <label style="display:block;font-size:12px;font-weight:600;color:#555;margin-bottom:4px;">Blood Sugar Level (mg/dL)</label>
+          <input type="number" id="blood-sugar" placeholder="e.g. 120" oninput="interpretBloodSugar()"
+          style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:14px;box-sizing:border-box;">
+        </div>
+        <div style="flex:1;">
+          <label style="display:block;font-size:12px;font-weight:600;color:#555;margin-bottom:4px;">Test Type</label>
+          <select id="test-type" onchange="interpretBloodSugar()"
+          style="width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:14px;box-sizing:border-box;background:white;">
+            <option value="fasting">Fasting (before eating)</option>
+            <option value="postmeal">Post Meal (after eating)</option>
+            <option value="random">Random</option>
+          </select>
+        </div>
+      </div>
+      <div id="sugar-result" style="display:none;border-radius:10px;padding:16px;text-align:center;">
+        <div id="sugar-icon" style="font-size:32px;margin-bottom:8px;"></div>
+        <div id="sugar-status" style="font-size:18px;font-weight:700;margin-bottom:6px;"></div>
+        <div id="sugar-range" style="font-size:12px;color:#666;margin-bottom:10px;"></div>
+        <div id="sugar-advice" style="font-size:13px;padding:10px;border-radius:8px;"></div>
+      </div>
+      <div style="background:white;border-radius:10px;padding:14px;margin-top:12px;">
+        <h4 style="font-size:13px;font-weight:700;color:#062B5E;margin-bottom:10px;">📊 Blood Sugar Reference Chart</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div style="background:#f0fff4;border-radius:8px;padding:10px;text-align:center;border:1px solid #27ae60;">
+            <div style="font-size:11px;font-weight:700;color:#27ae60;margin-bottom:4px;">✅ NORMAL</div>
+            <div style="font-size:11px;color:#444;">Fasting: 70-99</div>
+            <div style="font-size:11px;color:#444;">Post meal: below 140</div>
+          </div>
+          <div style="background:#fff8f0;border-radius:8px;padding:10px;text-align:center;border:1px solid #F59E0B;">
+            <div style="font-size:11px;font-weight:700;color:#F59E0B;margin-bottom:4px;">⚠️ PRE-DIABETIC</div>
+            <div style="font-size:11px;color:#444;">Fasting: 100-125</div>
+            <div style="font-size:11px;color:#444;">Post meal: 140-199</div>
+          </div>
+          <div style="background:#fff5f5;border-radius:8px;padding:10px;text-align:center;border:1px solid #e74c3c;">
+            <div style="font-size:11px;font-weight:700;color:#e74c3c;margin-bottom:4px;">🚨 DIABETIC</div>
+            <div style="font-size:11px;color:#444;">Fasting: 126+</div>
+            <div style="font-size:11px;color:#444;">Post meal: 200+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SYMPTOM CHECKER -->
+    <div style="background:#fff8f0;border:2px solid #F59E0B;border-radius:12px;padding:20px;margin-bottom:24px;">
+      <h3 style="color:#F59E0B;font-size:16px;margin:0 0 4px;font-weight:700;">🩺 Symptom Checker</h3>
+      <p style="font-size:12px;color:#888;margin:0 0 14px;">Select any symptoms you are currently experiencing</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+        <label style="display:flex;align-items:center;gap:8px;background:white;padding:8px 12px;border-radius:8px;border:1px solid #e0e0e0;cursor:pointer;font-size:13px;color:#444;">
+          <input type="checkbox" class="symptom-check" onchange="checkSymptoms()"> 😫 Frequent fatigue
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;background:white;padding:8px 12px;border-radius:8px;border:1px solid #e0e0e0;cursor:pointer;font-size:13px;color:#444;">
+          <input type="checkbox" class="symptom-check" onchange="checkSymptoms()"> 🚽 Frequent urination
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;background:white;padding:8px 12px;border-radius:8px;border:1px solid #e0e0e0;cursor:pointer;font-size:13px;color:#444;">
+          <input type="checkbox" class="symptom-check" onchange="checkSymptoms()"> 💧 Excessive thirst
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;background:white;padding:8px 12px;border-radius:8px;border:1px solid #e0e0e0;cursor:pointer;font-size:13px;color:#444;">
+          <input type="checkbox" class="symptom-check" onchange="checkSymptoms()"> 👁️ Blurred vision
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;background:white;padding:8px 12px;border-radius:8px;border:1px solid #e0e0e0;cursor:pointer;font-size:13px;color:#444;">
+          <input type="checkbox" class="symptom-check" onchange="checkSymptoms()"> 🍽️ Increased hunger
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;background:white;padding:8px 12px;border-radius:8px;border:1px solid #e0e0e0;cursor:pointer;font-size:13px;color:#444;">
+          <input type="checkbox" class="symptom-check" onchange="checkSymptoms()"> ⚖️ Unexplained weight loss
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;background:white;padding:8px 12px;border-radius:8px;border:1px solid #e0e0e0;cursor:pointer;font-size:13px;color:#444;">
+          <input type="checkbox" class="symptom-check" onchange="checkSymptoms()"> 🩹 Slow healing wounds
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;background:white;padding:8px 12px;border-radius:8px;border:1px solid #e0e0e0;cursor:pointer;font-size:13px;color:#444;">
+          <input type="checkbox" class="symptom-check" onchange="checkSymptoms()"> 🤲 Numbness in hands/feet
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;background:white;padding:8px 12px;border-radius:8px;border:1px solid #e0e0e0;cursor:pointer;font-size:13px;color:#444;">
+          <input type="checkbox" class="symptom-check" onchange="checkSymptoms()"> 🤢 Nausea or vomiting
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;background:white;padding:8px 12px;border-radius:8px;border:1px solid #e0e0e0;cursor:pointer;font-size:13px;color:#444;">
+          <input type="checkbox" class="symptom-check" onchange="checkSymptoms()"> 🧠 Difficulty concentrating
+        </label>
+      </div>
+      <div id="symptom-result" style="display:none;border-radius:8px;padding:12px 16px;margin-top:8px;text-align:center;">
+        <p id="symptom-text" style="font-size:14px;font-weight:600;margin:0;"></p>
+        <p id="symptom-advice" style="font-size:12px;margin:6px 0 0;"></p>
+      </div>
+    </div>
+
+    <!-- PREDICTION FORM -->
     <form action="/predict" method="POST">
       <div class="form-group">
+        <label>Patient Name</label>
+        <input type="text" name="patient_name" placeholder="e.g. Your Full Name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Gender</label>
+        <div style="display:flex;gap:12px;margin-top:4px;">
+          <button type="button" id="btn-female" onclick="selectGender('female')"
+          style="flex:1;padding:10px;font-size:14px;border:2px solid #667eea;border-radius:8px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;cursor:pointer;font-weight:500;">
+            👩 Female
+          </button>
+          <button type="button" id="btn-male" onclick="selectGender('male')"
+          style="flex:1;padding:10px;font-size:14px;border:2px solid #e0e0e0;border-radius:8px;background:white;color:#555;cursor:pointer;font-weight:500;">
+            👨 Male
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group" id="pregnancies-group">
         <label>Pregnancies</label>
-        <input type="number" name="pregnancies" placeholder="e.g. 2" min="0" required>
+        <input type="number" name="pregnancies" id="pregnancies" placeholder="e.g. 2" min="0" required>
       </div>
       <div class="form-group">
         <label>Glucose Level</label>
@@ -76,6 +185,144 @@
   </div>
 
   <script>
+    function interpretBloodSugar() {
+      var sugar = parseFloat(document.getElementById('blood-sugar').value);
+      var testType = document.getElementById('test-type').value;
+      var resultDiv = document.getElementById('sugar-result');
+      var iconEl = document.getElementById('sugar-icon');
+      var statusEl = document.getElementById('sugar-status');
+      var rangeEl = document.getElementById('sugar-range');
+      var adviceEl = document.getElementById('sugar-advice');
+
+      if (!sugar || sugar <= 0) {
+        resultDiv.style.display = 'none';
+        return;
+      }
+
+      resultDiv.style.display = 'block';
+      var status, icon, color, bg, range, advice;
+
+      if (testType === 'fasting') {
+        if (sugar < 70) {
+          status = 'LOW BLOOD SUGAR'; icon = '⬇️'; color = '#3498db'; bg = '#e8f4fd';
+          range = 'Normal fasting range: 70-99 mg/dL';
+          advice = 'Your blood sugar is too low! Eat something sweet immediately. Consult your doctor.';
+        } else if (sugar <= 99) {
+          status = 'NORMAL'; icon = '✅'; color = '#27ae60'; bg = '#f0fff4';
+          range = 'Normal fasting range: 70-99 mg/dL';
+          advice = 'Your fasting blood sugar is normal. Keep maintaining a healthy lifestyle!';
+        } else if (sugar <= 125) {
+          status = 'PRE-DIABETIC'; icon = '⚠️'; color = '#f39c12'; bg = '#fff8f0';
+          range = 'Pre-diabetic fasting range: 100-125 mg/dL';
+          advice = 'You are in the pre-diabetic range. Consult a doctor and make lifestyle changes immediately.';
+        } else {
+          status = 'DIABETIC RANGE'; icon = '🚨'; color = '#e74c3c'; bg = '#fff5f5';
+          range = 'Diabetic fasting range: 126+ mg/dL';
+          advice = 'Your blood sugar is in the diabetic range. Please consult a doctor immediately.';
+        }
+      } else if (testType === 'postmeal') {
+        if (sugar < 140) {
+          status = 'NORMAL'; icon = '✅'; color = '#27ae60'; bg = '#f0fff4';
+          range = 'Normal post meal range: below 140 mg/dL';
+          advice = 'Your post meal blood sugar is normal. Keep maintaining your healthy diet!';
+        } else if (sugar <= 199) {
+          status = 'PRE-DIABETIC'; icon = '⚠️'; color = '#f39c12'; bg = '#fff8f0';
+          range = 'Pre-diabetic post meal range: 140-199 mg/dL';
+          advice = 'You are in the pre-diabetic range. Reduce carbohydrates and consult a doctor.';
+        } else {
+          status = 'DIABETIC RANGE'; icon = '🚨'; color = '#e74c3c'; bg = '#fff5f5';
+          range = 'Diabetic post meal range: 200+ mg/dL';
+          advice = 'Your post meal blood sugar is very high. Please consult a doctor immediately.';
+        }
+      } else {
+        if (sugar < 140) {
+          status = 'NORMAL'; icon = '✅'; color = '#27ae60'; bg = '#f0fff4';
+          range = 'Normal random range: below 140 mg/dL';
+          advice = 'Your random blood sugar reading is normal. Keep maintaining a healthy lifestyle!';
+        } else if (sugar <= 199) {
+          status = 'BORDERLINE'; icon = '⚠️'; color = '#f39c12'; bg = '#fff8f0';
+          range = 'Borderline random range: 140-199 mg/dL';
+          advice = 'Your blood sugar is borderline. Please do a fasting test and consult your doctor.';
+        } else {
+          status = 'DIABETIC RANGE'; icon = '🚨'; color = '#e74c3c'; bg = '#fff5f5';
+          range = 'Diabetic random range: 200+ mg/dL';
+          advice = 'Your random blood sugar is very high. Please consult a doctor immediately.';
+        }
+      }
+
+      resultDiv.style.background = bg;
+      resultDiv.style.border = '1.5px solid ' + color;
+      iconEl.textContent = icon;
+      statusEl.textContent = status;
+      statusEl.style.color = color;
+      rangeEl.textContent = range;
+      adviceEl.textContent = advice;
+      adviceEl.style.background = 'white';
+      adviceEl.style.color = '#444';
+    }
+
+    function selectGender(gender) {
+      var femaleBtn = document.getElementById('btn-female');
+      var maleBtn = document.getElementById('btn-male');
+      var pregGroup = document.getElementById('pregnancies-group');
+      var pregInput = document.getElementById('pregnancies');
+
+      if (gender === 'male') {
+        maleBtn.style.background = 'linear-gradient(135deg,#667eea,#764ba2)';
+        maleBtn.style.color = 'white';
+        maleBtn.style.borderColor = '#667eea';
+        femaleBtn.style.background = 'white';
+        femaleBtn.style.color = '#555';
+        femaleBtn.style.borderColor = '#e0e0e0';
+        pregGroup.style.display = 'none';
+        pregInput.value = 0;
+        pregInput.required = false;
+      } else {
+        femaleBtn.style.background = 'linear-gradient(135deg,#667eea,#764ba2)';
+        femaleBtn.style.color = 'white';
+        femaleBtn.style.borderColor = '#667eea';
+        maleBtn.style.background = 'white';
+        maleBtn.style.color = '#555';
+        maleBtn.style.borderColor = '#e0e0e0';
+        pregGroup.style.display = 'block';
+        pregInput.value = '';
+        pregInput.required = true;
+      }
+    }
+
+    function checkSymptoms() {
+      var checked = document.querySelectorAll('.symptom-check:checked').length;
+      var resultDiv = document.getElementById('symptom-result');
+      var textEl = document.getElementById('symptom-text');
+      var adviceEl = document.getElementById('symptom-advice');
+
+      if (checked === 0) { resultDiv.style.display = 'none'; return; }
+      resultDiv.style.display = 'block';
+
+      if (checked <= 2) {
+        resultDiv.style.background = '#f0fff4';
+        resultDiv.style.border = '1.5px solid #27ae60';
+        textEl.style.color = '#27ae60';
+        textEl.textContent = '✅ Low Symptom Count (' + checked + ' symptoms)';
+        adviceEl.style.color = '#555';
+        adviceEl.textContent = 'You have few symptoms. Still fill the form below for accurate prediction.';
+      } else if (checked <= 5) {
+        resultDiv.style.background = '#fff8f0';
+        resultDiv.style.border = '1.5px solid #F59E0B';
+        textEl.style.color = '#F59E0B';
+        textEl.textContent = '⚠️ Moderate Symptom Count (' + checked + ' symptoms)';
+        adviceEl.style.color = '#555';
+        adviceEl.textContent = 'You have moderate symptoms. Please fill the prediction form below immediately.';
+      } else {
+        resultDiv.style.background = '#fff5f5';
+        resultDiv.style.border = '1.5px solid #e74c3c';
+        textEl.style.color = '#e74c3c';
+        textEl.textContent = '🚨 High Symptom Count (' + checked + ' symptoms)';
+        adviceEl.style.color = '#555';
+        adviceEl.textContent = 'You have many diabetes symptoms! Fill the form below and consult a doctor immediately.';
+      }
+    }
+
     function calculateBMI() {
       var height = parseFloat(document.getElementById('height').value);
       var weight = parseFloat(document.getElementById('weight').value);
@@ -84,8 +331,7 @@
         var bmiRounded = Math.round(bmi * 10) / 10;
         document.getElementById('bmi-value').textContent = bmiRounded;
         document.getElementById('bmi-result').style.display = 'block';
-        var category = '';
-        var color = '';
+        var category = '', color = '';
         if (bmi < 18.5) { category = 'Underweight'; color = '#3498db'; }
         else if (bmi < 25) { category = 'Normal weight'; color = '#27ae60'; }
         else if (bmi < 30) { category = 'Overweight'; color = '#f39c12'; }
